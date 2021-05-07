@@ -499,9 +499,9 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp  22.20
-    #define DEFAULT_Ki   1.08
-    #define DEFAULT_Kd 114.00
+    #define DEFAULT_Kp 22.00//#define DEFAULT_Kp  22.20 // tuned by TH 05/07/2021
+    #define DEFAULT_Ki 1.37//#define DEFAULT_Ki   1.08
+    #define DEFAULT_Kd 88.30//#define DEFAULT_Kd 114.00
   #endif
 #endif // PIDTEMP
 
@@ -522,7 +522,7 @@
  * heater. If your configuration is significantly different than this and you don't understand
  * the issues involved, don't use bed PID until someone else verifies that your hardware works.
  */
-//#define PIDTEMPBED
+#define PIDTEMPBED // enabled by TH 05/07/2021
 
 //#define BED_LIMIT_SWITCHING
 
@@ -1393,8 +1393,8 @@
 #endif
 
 // Homing speeds (mm/min)
-#define HOMING_FEEDRATE_XY (50*60)*0.5 //halved by TH 05/07/2021
-#define HOMING_FEEDRATE_Z  (4*60)*0.5
+#define HOMING_FEEDRATE_XY (25*60)//(50*60) //halved by TH 05/07/2021
+#define HOMING_FEEDRATE_Z  (2*60)//(4*60)
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
