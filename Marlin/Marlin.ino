@@ -55,3 +55,15 @@ Contributing
 
 
 ------------------------------------------------------------------------------*/
+/*------------------------------------------------------------------------------
+  Marlin M2 - Firmware for Modified MakerGear M2 3D Printer 
+  This firmware has been modified by Tristan Hill                              
+  v1.0 - "M2-TWH v1.0" - 12/31/2020 - 03/24/2020 - 
+    - firmware version: "Marlin-2.0.x" and "Marlin-bugfix-2.0.x" 
+  V1.1 - "Marlin M2" - 05/07/2021
+    - firmware version: "Marlin-2.0.x" (release: Marlin-2.0.8 , tag: 2.08) 
+    - name changed to Marlin M2 
+    - this repo is now a 'fork' of https://github.com/MarlinFirmware/Marlin
+    
+    - firmware version: "Marlin-2.0.7" (release: Marlin-2.0.7 , tag: 2.0.7.2) 
+-------------------------------------------------------------------------------*/
