@@ -2734,4 +2734,4 @@
 // Edit servo angles with M281 and save to EEPROM with M500
 //#define EDITABLE_SERVO_ANGLES
 
-// This file was configured by Tristan Hill on 05/07/2021 for the mModified MakerGear M2
+// This file was modified by Tristan Hill on 05/07/2021 for the modified MakerGear M2
