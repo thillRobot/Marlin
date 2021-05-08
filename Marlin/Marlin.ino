@@ -64,6 +64,8 @@ Contributing
     - firmware version: "Marlin-2.0.x" (release: Marlin-2.0.8 , tag: 2.08) 
     - name changed to Marlin M2 
     - this repo is now a 'fork' of https://github.com/MarlinFirmware/Marlin
-    
-    - firmware version: "Marlin-2.0.7" (release: Marlin-2.0.7 , tag: 2.0.7.2) 
+    - firmware version: "Marlin-2.0.8" - would not compile "init is not a member of U8glib" - look into this - 2.0.8 has imporvements
+    - firmware version: "Marlin-2.0.7" (release: Marlin-2.0.7 , tag: 2.0.7.2) - tested and currently working
+    - added use odf FAN1_PIN and FAN2_PIN in Configuration_adv.h
+    - added use of CONTROLLER_FAN for enclosure cooler fan
 -------------------------------------------------------------------------------*/
