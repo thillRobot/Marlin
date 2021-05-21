@@ -78,6 +78,8 @@ M84     ; disable motors
  // 8)[steps taken] / [actual length extruded] = [accurate steps/mm value], 50000/94 =531.9 // this number works very good, almost exactly 20mm left!
 
 
+i
+
 
 ## Things to do:
 
@@ -85,5 +87,6 @@ M84     ; disable motors
 - [ ] learn how to save prusaslicer settings for export, the printer settings specifically
 - [x] convert this repo to a fork of Marlin2, learn about forking(in process)
 - [ ] update 'big-printer' firmware and move from old repo to new branch 'big-2.0.x' or similar of this repo 
-- [ ] copy and test settings from configurtion.h and configuration_adv.h for bug-printer (EISNYRAMBO)
+	-> 2.0.x does not compile for BOARD_EINSY_RAMBO, error "init is not a member U8glib"
+- [x] copy and test settings from configurtion.h and configuration_adv.h for bug-printer (EISNYRAMBO)
 - [ ] install and configure second titan aero extruder hotend combo for dual extrusion 

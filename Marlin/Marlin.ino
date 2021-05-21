@@ -56,7 +56,7 @@ Contributing
 
 ------------------------------------------------------------------------------*/
 
-/*  Congifuration for 'Big-Printer' by Tristan Hill  
+/*  Configuration for 'Big-Printer' by Tristan Hill  
     settings copied from old repo 'marlin_big' which was last edited 05/26/2020
     into new branch 'big-2.0.x' on 05/17/2021 */
 
