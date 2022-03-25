@@ -72,3 +72,11 @@ M84     ; disable motors
 - [ ] convert this repo to a fork of Marlin2, learn about forking
 - [ ] update 'big-printer' firmware and move from old repo to new branch 'big-2.0.x' or similar of this repo 
 - [ ] install and configure second titan aero extruder hotend combo for dual extrusion 
+
+
+
+## BL Touch as Z stop Wiring - This needs documentation
+
+## Octoprint Server 
+
+### Hardare - Rasp Pi 3 B+
