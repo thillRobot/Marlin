@@ -98,7 +98,7 @@ Low memory available, stability problems may occur.
 
 The BL Touch sensor can replace the Z end stop. The probe wires (white and black) from the BL Touch go to the Zmin endstop in this confguration. The MOTOR EXT 1 on the RAMBO is used to drive the motion of the probe (servo). Make sure to check the wiring and polarity carefully. I had to switch the brown and red wires that came with the BL Touch to match the connection on the RAMBO. 
 
-![Rambo BL Touch wiring](/images/Rambo1-2-m2-titan.png)
+![Rambo BL Touch wiring](images/Rambo1-2-m2-titan.png)
 
 
 
