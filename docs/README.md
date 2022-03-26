@@ -100,8 +100,66 @@ The BL Touch sensor can replace the Z end stop. The probe wires (white and black
 
 ![Rambo BL Touch wiring](images/Rambo1-2-m2-titan.png)
 
-
-
 ## Octoprint Server 
 
-### Hardare - Rasp Pi 3 B+
+### Hardware: Rasp Pi 3 B+
+
+### OS:  Ubuntu 20.04.4 Server - arm64
+
+Download Ubuntu Sever for Rasp Pi https://ubuntu.com/download/raspberry-pi -> "ubuntu-20.04.4-preinstalled-server-arm64+raspi.img.xz"
+
+Flash SD card for rasp pi (16 GB) using 'pi imager' or other.
+
+boot pi and update
+
+default user: ubuntu , psw: ubuntu
+
+add user named pi (or something else)
+
+follow instructions from OctoPrint.org (https://community.octoprint.org/t/setting-up-octoprint-on-a-raspberry-pi-running-raspbian-or-raspberry-pi-os/2337)
+
+### update
+```
+sudo apt update
+sudo apt upgrade 
+```
+###  install dependencies
+```
+sudo apt install python3-pip python3-dev python3-setuptools python3-venv git libyaml-dev build-essential
+mkdir OctoPrint && cd OctoPrint
+```
+### setup and start virtual environment
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### add user pi to dialout and tty groups
+```
+sudo usermod -a -G tty pi
+sudo usermod -a -G dialout pi
+```
+### test the server for the first time
+```
+~/OctoPrint/venv/bin/octoprint serve
+```
+
+### download scripts to enable automatic startup
+```
+wget https://github.com/OctoPrint/OctoPrint/raw/master/scripts/octoprint.service && sudo mv octoprint.service /etc/systemd/system/octoprint.service
+
+sudo systemctl enable octoprint.service
+```
+
+### start, stop, or restart the service
+
+start Octoprint service:
+
+```
+sudo service octoprint {start|stop|restart}
+```
+
+### open web interface, 
+```
+//<IP-of-PI>:5000
+```
