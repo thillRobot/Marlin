@@ -16,6 +16,7 @@ Version 1.8.10 in my `Dropbox/threedee_printing` directory as an executable
 
 The `U8glib` arduino library is needed. This can be installed through the arudino IDE by clicking `Sketch>Include Library>Manage Libraries`
 
+Alternatively, use `arduino-cli` to compile anmd 
 
 ## Replacing Nozzle on Marlin M2-TWH Printer
 
@@ -75,7 +76,31 @@ M84     ; disable motors
 
 
 
+### compiling Marlin with arduino-cli
+
+```
+ arduino-cli lib install u8glib
+Downloading U8glib@1.19.1...
+U8glib@1.19.1 downloaded                                                                                                                    
+Installing U8glib@1.19.1...
+Installed U8glib@1.19.1
+ 
+ arduino-cli compile --fqbn "arduino:avr:mega:cpu=atmega2560" Marlin.ino 
+Sketch uses 201286 bytes (79%) of program storage space. Maximum is 253952 bytes.
+Global variables use 6212 bytes (75%) of dynamic memory, leaving 1980 bytes for local variables. Maximum is 8192 bytes.
+Low memory available, stability problems may occur.
+
+ arduino-cli upload -p /dev/ttyACM0 --fqbn "arduino:avr:mega:cpu=atmega2560" Marlin.ino 
+```
+
+
 ## BL Touch as Z stop Wiring - This needs documentation
+
+The BL Touch sensor can replace the Z end stop. The probe wires (white and black) from the BL Touch go to the Zmin endstop in this confguration. The MOTOR EXT 1 on the RAMBO is used to drive the motion of the probe (servo). Make sure to check the wiring and polarity carefully. I had to switch the brown and red wires that came with the BL Touch to match the connection on the RAMBO. 
+
+
+
+
 
 ## Octoprint Server 
 
