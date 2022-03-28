@@ -164,9 +164,7 @@ sudo service octoprint {start|stop|restart}
 //<IP-of-PI>:5000
 ```
 
-### setup webcam streaming
-
-Install 
+### setup webcam streaming with `mjpg-streamer`
 
 I tried using the mjpg-streamer that comes with the snap store, but most of the information I found referred to the one on github instead (https://github.com/jacksonliam/mjpg-streamer). I switched to this and it worked fine.
 
