@@ -163,3 +163,47 @@ sudo service octoprint {start|stop|restart}
 ```
 //<IP-of-PI>:5000
 ```
+
+### setup webcam streaming
+
+Install 
+
+I tried using the mjpg-streamer that comes with the snap store, but most of the information I found referred to the one on github instead (https://github.com/jacksonliam/mjpg-streamer). I switched to this and it worked fine.
+
+I did not follow the directions from octoprint exactly, instead I used the basic compile instructions from the mjpg-streamer github
+
+```
+sudo apt update 
+sudo apt install ffmpeg
+sudo apt-get install cmake libjpeg8-dev
+sudo apt-get install gcc g++
+```
+
+```
+git clone https://github.com/jacksonliam/mjpg-streamer.git
+cd mjpg-streamer/mjpg-streamer-experimental
+```
+
+```
+cd mjpg-streamer-experimental
+make
+```
+
+Next the instructions say to use `sudo make install`, but I have not done this yet.
+
+You can see the stream in a browswer at `https://<IP-of-PI>:8080/?action=stream`, and this URL needs to set in the Octoprint Settings
+
+OctoPrint Settings -> Webcam and Timelapse
+```
+Stream URL: http://192.168.254.126:8080/?action=stream
+Stream aspect ratio: 16:9
+Enable timekapse support: checked
+Snapshot URL: http://127.0.0.1:8080/?action=snapshot
+Path to FFMPEG: /usr/bin/ffmpeg
+Enable OctoPrint watermark in timelapse movies
+```
+
+
+
+
+
