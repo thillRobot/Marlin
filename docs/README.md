@@ -161,7 +161,7 @@ sudo service octoprint {start|stop|restart}
 
 ### open web interface, 
 ```
-//<IP-of-PI>:5000
+//<IP-of-Pi>:5000
 ```
 
 ### setup webcam streaming with `mjpg-streamer`
@@ -193,7 +193,7 @@ You can see the stream in a browswer at `https://<IP-of-PI>:8080/?action=stream`
 
 OctoPrint Settings -> Webcam and Timelapse
 ```
-Stream URL: http://192.168.254.126:8080/?action=stream
+Stream URL: http://<IP-of-Pi>:8080/?action=stream
 Stream aspect ratio: 16:9
 Enable timekapse support: checked
 Snapshot URL: http://127.0.0.1:8080/?action=snapshot
