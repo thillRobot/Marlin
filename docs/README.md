@@ -189,7 +189,7 @@ make
 
 Next the instructions say to use `sudo make install`, but I have not done this yet.
 
-You can see the stream in a browswer at `https://<IP-of-PI>:8080/?action=stream`, and this URL needs to set in the Octoprint Settings
+You can see the stream in a browswer at `https://<IP-of-Pi>:8080/?action=stream`, and this URL needs to set in the Octoprint Settings
 
 OctoPrint Settings -> Webcam and Timelapse
 ```
