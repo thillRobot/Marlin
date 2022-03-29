@@ -190,9 +190,9 @@ make
 Next the instructions say to use `sudo make install`, but I have not done this yet.
 
 
-Start the stream with the following command.
+Start the stream with the following command. Without `sudo` there is a permission denied error.
 ```
-./mjpg_streamer -i "./input_uvc.so" -o "./output_http.so"
+sudo ./mjpg_streamer -i "./input_uvc.so" -o "./output_http.so"
 ```
 
 You can see the stream in a browswer at `https://<IP-of-Pi>:8080/?action=stream`, and this URL needs to set in the Octoprint Settings
