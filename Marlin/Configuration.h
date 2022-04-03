@@ -70,7 +70,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Tristan Hill, Modified MakerGear M2)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(thillRobot, M2-Titan, v2.0.7.2)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -741,7 +741,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT {88.88,88.88,400,526.8}//  { 80, 80, 4000, 500 } changed by TH 05/07/2021, measured 03/24/2020  
+#define DEFAULT_AXIS_STEPS_PER_UNIT {88.88,88.88,400,819.8}//  { 80, 80, 4000, 500 } changed by TH 04/03/2022, copied from previous versions
 
 /**
  * Default Max Feed Rate (mm/s)
