@@ -120,7 +120,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
-#define BAUDRATE 115200 // 250000 // changed by TH (05/07/2021)
+#define BAUDRATE 250000 // 250000 // changed by TH (05/07/2021)
 
 // Enable the Bluetooth serial interface on AT90USB devices
 //#define BLUETOOTH
@@ -986,7 +986,7 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { 34, 5, -1.00 } // { 10, 10, 0 } // changed by TH 05/07/2021
+#define NOZZLE_TO_PROBE_OFFSET { -38.1,-57.1, -1.00 } // { 10, 10, 0 } // changed by TH 05/07/2021
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
@@ -1122,7 +1122,7 @@
 // @section machine
 
 // The size of the print bed
-#define X_BED_SIZE 180 //changed by TH (05/07/2021)
+#define X_BED_SIZE 160 //changed by TH (05/07/2021)
 #define Y_BED_SIZE 240
 
 // Travel limits (mm) after homing, corresponding to endstop positions.
