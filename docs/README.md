@@ -16,7 +16,7 @@ Version 1.8.10 in my `Dropbox/threedee_printing` directory as an executable
 
 The `U8glib` arduino library is needed. This can be installed through the arudino IDE by clicking `Sketch>Include Library>Manage Libraries`
 
-Alternatively, use `arduino-cli` to compile anmd 
+Alternatively, use `arduino-cli` to compile and upload (https://github.com/arduino/arduino-cli)
 
 ## Replacing Nozzle on Marlin M2-TWH Printer
 
@@ -24,11 +24,12 @@ Follow the assembly instructions for assembling the E3D V6 Hotend [here](https:/
 
 The *hot tightening* procedure requires the nozzle to be set to 285 which is outside of the normal/safe range of temps for the hotend. The max nozzle temp must be temporarily set to 285 for the mozzle to be replaced. Make sure to reset the limit to a safe xyz after installing a nozzle.
 
-**Note:** A steel adjustable wrench will change the temperature of the hotend very quickly and often trigger reset if you are not quick.
+**Note:** A large adjustable wrench will change the temperature of the hotend very quickly and often trigger reset if you are not quick.
 
-## PID Tuning for Hotend
-## G-Code - this orginally came from the marlin website [here](https://marlinfw.org/docs/features/unified_bed_leveling.html#unified-bed-leveling)
-## Start Code - Initialize UBL - Generates and Saves New Mesh
+## G Code 
+
+### UBL Start - this orginally came from the marlin website [here](https://marlinfw.org/docs/features/unified_bed_leveling.html#unified-bed-leveling)
+### Start Code - Initialize UBL - Generates and Saves New Mesh
 ```
 M502          ; Reset settings to configuration defaults...
 ;M500         ; ...and Save to EEPROM. Use this on a new install.  
@@ -48,22 +49,46 @@ G29 F 10.0    ; Set Fade Height for correction at 10.0 mm.
 G29 A         ; Activate the UBL System.
 M500          ; Save current setup. WARNING - UBL will be active at power up, before any G28.
 ```
-## Start Code - Print UBL - Tilts Previously Saved Mesh
+### Start Code - Print UBL - Tilts Previously Saved Mesh
 ```
+M190 S65      ; Not required, but having the printer at temperature helps accuracy
+M104 S2
+
 G28 ; home all axes
 G1 Z5 F5000 ; lift nozzle
 
 G29 L1        ; Load the mesh stored in slot 1 (from G29 S1)
 G29 J         ; No size specified on the J option tells G29 to probe the specified 3 points and tilt the mesh according to what it finds.
-
 ```
-## End Code - Home and Cooldown
+### End Code - Home and Cooldown
 ```
 M104 S0 ; turn off temperature
 M190 S0; turn off bed
 G28 X0  ; home X axis
 M84     ; disable motors
 ```
+
+
+## PID Tuning for Hotend
+
+## PID Tuning for Bed
+
+
+
+## Extruder Tuning - algorithm from ALL3DP (https://all3dp.com/2/extruder-calibration-6-easy-steps-2/)
+
+Step 1 - Load filament in printer and nozzle
+Step 2 - Mark filament with marker 120mm from extruder inlet
+Step 3 - Connect to printer, send `G1 E100 F100`, this should extrude 100 mm of filament
+Step 4 - Measure length to mark, this should be 20 mm
+Step 5 - Calculate corrected STEPS_PER_UNIT using following equations
+
+    120 - [length to mark] = [actual length extruded]
+    [steps/mm value] *100= [steps taken]
+    [steps taken]/[actual length extruded]=[accurate steps/mm value]
+
+
+
 
 ## Things to do:
 
@@ -76,21 +101,21 @@ M84     ; disable motors
 
 
 
-### compiling Marlin with arduino-cli
+### compiling and uploading Marlin with `arduino-cli`
 
+Install library for LCD display
 ```
- arduino-cli lib install u8glib
-Downloading U8glib@1.19.1...
-U8glib@1.19.1 downloaded                                                                                                                    
-Installing U8glib@1.19.1...
-Installed U8glib@1.19.1
- 
- arduino-cli compile --fqbn "arduino:avr:mega:cpu=atmega2560" Marlin.ino 
-Sketch uses 201286 bytes (79%) of program storage space. Maximum is 253952 bytes.
-Global variables use 6212 bytes (75%) of dynamic memory, leaving 1980 bytes for local variables. Maximum is 8192 bytes.
-Low memory available, stability problems may occur.
+arduino-cli lib install u8glib
+```
 
- arduino-cli upload -p /dev/ttyACM0 --fqbn "arduino:avr:mega:cpu=atmega2560" Marlin.ino 
+Compile the sketch - On the Rasp Pi 3 this takes a long time, maybe 15 minutes or so
+``` 
+arduino-cli compile --fqbn "arduino:avr:mega:cpu=atmega2560" Marlin.ino 
+```
+
+Upload the sketch to the printer MCU - This should not take long
+```
+arduino-cli upload -p /dev/ttyACM0 --fqbn "arduino:avr:mega:cpu=atmega2560" Marlin.ino 
 ```
 
 
@@ -100,7 +125,8 @@ The BL Touch sensor can replace the Z min end stop. The probe wires (white and b
 
 ![Rambo BL Touch wiring](images/Rambo1-2-m2-titan.png)
 
-## Octoprint Server 
+
+## Octoprint Server #1 - Old School Way - Manual Install 
 
 ### Hardware: Rasp Pi 3 B+
 
@@ -207,7 +233,8 @@ Path to FFMPEG: /usr/bin/ffmpeg
 Enable OctoPrint watermark in timelapse movies
 ```
 
-
+## Octoprint on Docker 
+Lol, this was a lot easier than the other way. 
 
 
 

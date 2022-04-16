@@ -109,7 +109,7 @@
  * Select a secondary serial port on the board to use for communication with the host.
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
-//#define SERIAL_PORT_2 -1
+// #define SERIAL_PORT_2 -1
 
 /**
  * This setting determines the communication speed of the printer.
@@ -120,6 +120,7 @@
  *
  * :[2400, 9600, 19200, 38400, 57600, 115200, 250000, 500000, 1000000]
  */
+
 #define BAUDRATE 115200 // 250000 // changed by TH (05/07/2021)
 
 // Enable the Bluetooth serial interface on AT90USB devices
@@ -499,9 +500,10 @@
     #define DEFAULT_Ki_LIST {   1.08,   1.08 }
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
-    #define DEFAULT_Kp 22.00//#define DEFAULT_Kp  22.20 // tuned by TH 05/07/2021
-    #define DEFAULT_Ki 1.37//#define DEFAULT_Ki   1.08
-    #define DEFAULT_Kd 88.30//#define DEFAULT_Kd 114.00
+    #define DEFAULT_Kp 21.85// tuned by TH 04/09/2022
+    #define DEFAULT_Ki 1.56//
+    #define DEFAULT_Kd 76.51//
+
   #endif
 #endif // PIDTEMP
 
@@ -540,9 +542,11 @@
 
   // 120V 250W silicone heater into 4mm borosilicate (MendelMax 1.5+)
   // from FOPDT model - kp=.39 Tp=405 Tdead=66, Tc set to 79.2, aggressive factor of .15 (vs .1, 1, 10)
-  #define DEFAULT_bedKp 65.33// #define DEFAULT_bedKp 77.70   //#define DEFAULT_bedKp 10.00 // tuned by TH 05/07/2021
-  #define DEFAULT_bedKi 2.57// #define DEFAULT_bedKi 3.72    //#define DEFAULT_bedKi .023  // values from previous autotune
-  #define DEFAULT_bedKd 1105.98//#define DEFAULT_bedKd 1082.17 //#define DEFAULT_bedKd 305.4
+  #define DEFAULT_bedKp 79.36// tuned by TH 04/09/2022
+  #define DEFAULT_bedKi 4.36// 
+  #define DEFAULT_bedKd 962.19//
+  
+
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
 #endif // PIDTEMPBED
@@ -580,7 +584,7 @@
 
 /**
  * Thermal Protection provides additional protection to your printer from damage
- * and fire. Marlin always includes safe min and max temperature ranges which
+- * and fire. Marlin always includes safe min and max temperature ranges which
  * protect against a broken or disconnected thermistor wire.
  *
  * The issue: If a thermistor falls out, it will report the much lower
@@ -741,7 +745,7 @@
  * Override with M92
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_AXIS_STEPS_PER_UNIT {88.88,88.88,400,819.8}//  { 80, 80, 4000, 500 } changed by TH 04/03/2022, copied from previous versions
+#define DEFAULT_AXIS_STEPS_PER_UNIT {88.88,88.88,400,410}// 819.8  { 80, 80, 4000, 500 } changed by TH 04/09/2022, copied from previous versions
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -761,7 +765,7 @@
  * Override with M201
  *                                      X, Y, Z, E0 [, E1[, E2...]]
  */
-#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 10000 }
+#define DEFAULT_MAX_ACCELERATION      { 3000, 3000, 100, 3000 }
 
 //#define LIMITED_MAX_ACCEL_EDITING     // Limit edit via M201 or LCD to DEFAULT_MAX_ACCELERATION * 2
 #if ENABLED(LIMITED_MAX_ACCEL_EDITING)
@@ -776,8 +780,8 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
-#define DEFAULT_ACCELERATION          3000    // X, Y, Z and E acceleration for printing moves
-#define DEFAULT_RETRACT_ACCELERATION  3000    // E acceleration for retracts
+#define DEFAULT_ACCELERATION          1000    // X, Y, Z and E acceleration for printing moves
+#define DEFAULT_RETRACT_ACCELERATION  1000    // E acceleration for retracts
 #define DEFAULT_TRAVEL_ACCELERATION   3000    // X, Y, Z acceleration for travel (non printing) moves
 
 /**
@@ -802,7 +806,7 @@
   #endif
 #endif
 
-#define DEFAULT_EJERK    5.0  // May be used by Linear Advance
+#define DEFAULT_EJERK    3.0  // May be used by Linear Advance
 
 /**
  * Junction Deviation Factor
