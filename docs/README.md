@@ -69,9 +69,35 @@ M84     ; disable motors
 ```
 
 
-## PID Tuning for Hotend
+## PID Tuning 
 
-## PID Tuning for Bed
+from the Marlin docs :(https://marlinfw.org/docs/gcode/M303.html)
+
+### Tune parameters for Hotend
+
+```
+Send: M303 E0 C8 S235
+Recv: PID Autotune start
+
+Recv: PID Autotune finished! Put the last Kp, Ki and Kd constants from below into Configuration.h
+Recv: #define DEFAULT_Kp 21.85
+Recv: #define DEFAULT_Ki 1.56
+Recv: #define DEFAULT_Kd 76.51
+```
+
+### Tune parameters for Bed
+
+for Hotend
+
+```
+Send: M303 E-1 C8 S70
+Recv: PID Autotune start
+
+Recv: PID Autotune finished! Put the last Kp, Ki and Kd constants from below into Configuration.h
+Recv: #define DEFAULT_bedKp 79.36
+Recv: #define DEFAULT_bedKi 4.36
+Recv: #define DEFAULT_bedKd 962.19
+```
 
 
 
@@ -87,6 +113,7 @@ Step 5 - Calculate corrected STEPS_PER_UNIT using following equations
     [steps/mm value] *100= [steps taken]
     [steps taken]/[actual length extruded]=[accurate steps/mm value]
 
+    410*100/(120-20.7) 
 
 
 
@@ -101,7 +128,7 @@ Step 5 - Calculate corrected STEPS_PER_UNIT using following equations
 
 
 
-### compiling and uploading Marlin with `arduino-cli`
+## compiling and uploading Marlin with `arduino-cli`
 
 Install library for LCD display
 ```
@@ -117,6 +144,17 @@ Upload the sketch to the printer MCU - This should not take long
 ```
 arduino-cli upload -p /dev/ttyACM0 --fqbn "arduino:avr:mega:cpu=atmega2560" Marlin.ino 
 ```
+
+## Update printer EEPROM after flashing changes to firmware !
+```
+M502  ; factort reset (load settings from Configuration.h)
+M500  ; save settings to EEPROM
+``` 
+
+```
+M501 ; load settings from EEPROM
+```
+
 
 
 ## BL Touch as Z stop Wiring - This needs documentation
@@ -233,8 +271,42 @@ Path to FFMPEG: /usr/bin/ffmpeg
 Enable OctoPrint watermark in timelapse movies
 ```
 
-## Octoprint on Docker 
+
+
+
+## Octoprint Server #2 - Containerization is the future - Octoprint on Docker 
+
+### Hardware: Rasp Pi 3 B+
+
+### OS:  Ubuntu 20.04.4 Server - arm64
+
+Download Ubuntu Sever for Rasp Pi https://ubuntu.com/download/raspberry-pi -> "ubuntu-20.04.4-preinstalled-server-arm64+raspi.img.xz"
+
+Flash SD card for rasp pi (16 GB) using 'pi imager' or other.
+
+
+
+
+
 Lol, this was a lot easier than the other way. 
 
 
 
+
+
+
+
+
+
+
+# Marlin 
+
+This is a README (NOTES.md) for the Marlin2 based 'Big-Printer'
+I am currently updating the firmware t0 2.0.x or 2.0.7 and re-organizing the repos
+
+Each printer will now have its own branch of thillRobot/Marlin which is fork of MarlinFirmware/Marlin.
+
+
+First we are going to try 2.0.x and hope we do not run into the same issue as we did with the RAMBO. I think this is a long shot, but it is worth a try. This is a different board (EINSYRAMBO) with the same processor (MEGA2560)
+
+instead of writing this readme from scratch I should use the one from the m2 as a template
