@@ -145,7 +145,7 @@ Upload the sketch to the printer MCU - This should not take long
 arduino-cli upload -p /dev/ttyACM0 --fqbn "arduino:avr:mega:cpu=atmega2560" Marlin.ino 
 ```
 
-## Update printer EEPROM after flashing changes to firmware !
+## IMPORTANT! Update printer EEPROM after flashing changes to firmware !
 ```
 M502  ; factort reset (load settings from Configuration.h)
 M500  ; save settings to EEPROM
