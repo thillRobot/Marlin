@@ -21,9 +21,10 @@
  */
 #pragma once
 
-#if NOT_TARGET(STM32F4, STM32F4xx)
-  #error "Oops! Select an STM32F4 board in 'Tools > Board.'"
-#elif HOTENDS > 2 || E_STEPPERS > 2
+#define ALLOW_STM32DUINO
+#include "env_validate.h"
+
+#if HOTENDS > 2 || E_STEPPERS > 2
   #error "STM32F4 supports up to 2 hotends / E-steppers."
 #endif
 
@@ -31,7 +32,7 @@
 #define BOARD_INFO_NAME      "STM32F4 VAkE"
 
 //#define I2C_EEPROM
-#define MARLIN_EEPROM_SIZE                0x1000  // 4KB
+#define MARLIN_EEPROM_SIZE                0x1000  // 4K
 
 //
 // Servos
@@ -99,16 +100,16 @@
   #define E1_CS_PIN                         PB0
 #endif
 
-#define SCK_PIN                             PE12  // PA5   // SPI1 for SD card
-#define MISO_PIN                            PE13  // PA6
-#define MOSI_PIN                            PE14  // PA7
+#define SD_SCK_PIN                          PE12  // PA5   // SPI1 for SD card
+#define SD_MISO_PIN                         PE13  // PA6
+#define SD_MOSI_PIN                         PE14  // PA7
 
 // added for SD card : optional or not ???
 //#define SD_CHIP_SELECT_PIN                SDSS  // The default chip select pin for the SD card is SS.
 // The following three pins must not be redefined for hardware SPI.
-//#define SPI_MOSI_PIN                  MOSI_PIN  // SPI Master Out Slave In pin
-//#define SPI_MISO_PIN                  MISO_PIN  // SPI Master In Slave Out pin
-//#define SPI_SCK_PIN                    SCK_PIN  // SPI Clock pin
+//#define SPI_MOSI_PIN               SD_MOSI_PIN  // SPI Master Out Slave In pin
+//#define SPI_MISO_PIN               SD_MISO_PIN  // SPI Master In Slave Out pin
+//#define SPI_SCK_PIN                 SD_SCK_PIN  // SPI Clock pin
 
 //
 // Temperature Sensors (Analog inputs)
@@ -149,8 +150,10 @@
 //
 // Průša i3 MK2 Multi Material Multiplexer Support
 //
-//#define E_MUX0_PIN                        PG3
-//#define E_MUX1_PIN                        PG4
+#if HAS_PRUSA_MMU1
+  //#define E_MUX0_PIN                      PG3
+  //#define E_MUX1_PIN                      PG4
+#endif
 
 #define LED_PIN                             PB14  // Alive
 #define PS_ON_PIN                           PE0
@@ -159,7 +162,7 @@
 
 #if ENABLED(SDSUPPORT)
   #define SD_DETECT_PIN                     PB7
-  #define SS_PIN                           PB_15  // USD_CS -> CS for onboard SD
+  #define SD_SS_PIN                        PB_15  // USD_CS -> CS for onboard SD
 #endif
 
 //
@@ -181,15 +184,9 @@
   #define BTN_ENC                           PB12
 #endif
 
-//
-// ST7920 Delays
-//
-#ifndef BOARD_ST7920_DELAY_1
-  #define BOARD_ST7920_DELAY_1      DELAY_NS(96)
-#endif
-#ifndef BOARD_ST7920_DELAY_2
-  #define BOARD_ST7920_DELAY_2      DELAY_NS(48)
-#endif
-#ifndef BOARD_ST7920_DELAY_3
-  #define BOARD_ST7920_DELAY_3     DELAY_NS(715)
+// Alter timing for graphical display
+#if IS_U8GLIB_ST7920
+  #define BOARD_ST7920_DELAY_1                96
+  #define BOARD_ST7920_DELAY_2                48
+  #define BOARD_ST7920_DELAY_3               715
 #endif

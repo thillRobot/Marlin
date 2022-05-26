@@ -29,22 +29,17 @@
   #include "watchdog.h"
 #endif
 
-uint32_t HAL_adc_reading = 0;
+DefaultSerial1 USBSerial(false, UsbSerial);
+
+uint32_t MarlinHAL::adc_result = 0;
 
 // U8glib required functions
-extern "C" void u8g_xMicroDelay(uint16_t val) {
-  DELAY_US(val);
+extern "C" {
+  void u8g_xMicroDelay(uint16_t val) { DELAY_US(val); }
+  void u8g_MicroDelay()              { u8g_xMicroDelay(1); }
+  void u8g_10MicroDelay()            { u8g_xMicroDelay(10); }
+  void u8g_Delay(uint16_t val)       { delay(val); }
 }
-extern "C" void u8g_MicroDelay() {
-  u8g_xMicroDelay(1);
-}
-extern "C" void u8g_10MicroDelay() {
-  u8g_xMicroDelay(10);
-}
-extern "C" void u8g_Delay(uint16_t val) {
-  delay(val);
-}
-//************************//
 
 // return free heap space
 int freeMemory() {
@@ -57,26 +52,33 @@ int freeMemory() {
   return result;
 }
 
-// scan command line for code
+void MarlinHAL::reboot() { NVIC_SystemReset(); }
+
+uint8_t MarlinHAL::get_reset_source() {
+  #if ENABLED(USE_WATCHDOG)
+    if (watchdog_timed_out()) return RST_WATCHDOG;
+  #endif
+  return RST_POWER_ON;
+}
+
+void MarlinHAL::clear_reset_source() {
+  TERN_(USE_WATCHDOG, watchdog_clear_timeout_flag());
+}
+
+void flashFirmware(const int16_t) {
+  delay(500);          // Give OS time to disconnect
+  USB_Connect(false);  // USB clear connection
+  delay(1000);         // Give OS time to notice
+  hal.reboot();
+}
+
+// For M42/M43, scan command line for pin code
 //   return index into pin map array if found and the pin is valid.
 //   return dval if not found or not a valid pin.
 int16_t PARSED_PIN_INDEX(const char code, const int16_t dval) {
   const uint16_t val = (uint16_t)parser.intval(code, -1), port = val / 100, pin = val % 100;
   const  int16_t ind = (port < ((NUM_DIGITAL_PINS) >> 5) && pin < 32) ? ((port << 5) | pin) : -2;
   return ind > -1 ? ind : dval;
-}
-
-void flashFirmware(const int16_t) { NVIC_SystemReset(); }
-
-void HAL_clear_reset_source(void) {
-  TERN_(USE_WATCHDOG, watchdog_clear_timeout_flag());
-}
-
-uint8_t HAL_get_reset_source(void) {
-  #if ENABLED(USE_WATCHDOG)
-    if (watchdog_timed_out()) return RST_WATCHDOG;
-  #endif
-  return RST_POWER_ON;
 }
 
 #endif // TARGET_LPC1768
