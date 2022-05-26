@@ -95,9 +95,9 @@
 // @section machine
 
 // Choose the name from boards.h that matches your setup
-#ifndef MOTHERBOARD
-  #define MOTHERBOARD BOARD_RAMPS_14_EFB
-#endif
+//#ifndef MOTHERBOARD
+//  #define MOTHERBOARD BOARD_RAMPS_14_EFB
+//#endif
 
 /**
  * Select the serial port on the board to use for communication with the host.
@@ -2402,9 +2402,9 @@
 //
 //#define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER
 #define REPRAP_DISCOUNT_FULL_GRAPHIC_SMART_CONTROLLER // enabled by TH on 05/17/2021
-  #define ST7920_DELAY_1 DELAY_NS(300)    // Einsy Rambo // these delays fixed my SD issues
-  #define ST7920_DELAY_2 DELAY_NS(300)  // Einsy Rambo   // wow, which I now realize is was an spi issue 
-  #define ST7920_DELAY_3 DELAY_NS(300)    // Einsy Rambo // I am very happy, feel dumb too
+//  #define ST7920_DELAY_1 DELAY_NS(300)    // Einsy Rambo // these delays fixed my SD issues
+//  #define ST7920_DELAY_2 DELAY_NS(300)  // Einsy Rambo   // wow, which I now realize is was an spi issue 
+//  #define ST7920_DELAY_3 DELAY_NS(300)    // Einsy Rambo // I am very happy, feel dumb too
 //
 // K.3D Full Graphic Smart Controller
 //
