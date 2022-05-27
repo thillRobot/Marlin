@@ -69,7 +69,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(Tristan Hill, Big Printer - Marlin 2.0.x)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(thillRobot, Big Printer - Marlin 2.0.x)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -149,7 +149,7 @@
 #endif
 
 // Name displayed in the LCD "Ready" message and Info menu
-#define CUSTOM_MACHINE_NAME "Big-Printer v2.0.x"
+#define CUSTOM_MACHINE_NAME "Big-Printer"
 
 // Printer's unique ID, used by some programs to differentiate between machines.
 // Choose your own or use a service like https://www.uuidgenerator.net/version4
@@ -880,6 +880,8 @@
 #define X_DRIVER_TYPE  TMC2130 // A4988 // changed by TH 05/17/2021
 #define Y_DRIVER_TYPE  TMC2130 // A4988 // changed by TH 05/17/2021
 #define Z_DRIVER_TYPE  TMC2130 // A4988 // changed by TH 05/17/2021
+#define E0_DRIVER_TYPE TMC2130 // A4988 // changed by TH 05/17/2021
+
 //#define X2_DRIVER_TYPE A4988
 //#define Y2_DRIVER_TYPE A4988
 //#define Z2_DRIVER_TYPE A4988
@@ -889,8 +891,6 @@
 //#define I_DRIVER_TYPE  A4988
 //#define J_DRIVER_TYPE  A4988
 //#define K_DRIVER_TYPE  A4988
-
-#define E0_DRIVER_TYPE TMC2130 // A4988 // changed by TH 05/17/2021
 
 //#define E1_DRIVER_TYPE A4988
 //#define E2_DRIVER_TYPE A4988
@@ -1033,7 +1033,7 @@
  *
  * See https://github.com/synthetos/TinyG/wiki/Jerk-Controlled-Motion-Explained
  */
-//#define S_CURVE_ACCELERATION
+#define S_CURVE_ACCELERATION
 
 //===========================================================================
 //============================= Z Probe Options =============================
@@ -1209,11 +1209,11 @@
  *     |    [-]    |
  *     O-- FRONT --+
  */
-#define NOZZLE_TO_PROBE_OFFSET { -47, 5, -1.70 }//{ 10, 10, 0 } // changed by TH 05/17/2021
+#define NOZZLE_TO_PROBE_OFFSET { -47, 5, -2.0 }//{ 10, 10, 0 } // changed by TH 05/26/2022
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
-#define PROBING_MARGIN 10
+#define PROBING_MARGIN 15
 
 // X and Y axis travel speed (mm/min) between probes
 #define XY_PROBE_FEEDRATE 2000//(133*60) // reduced by TH 05/17/2021
@@ -1294,8 +1294,8 @@
 #define Z_PROBE_LOW_POINT          -2 // Farthest distance below the trigger-point to go before stopping
 
 // For M851 give a range for adjusting the Z probe offset
-#define Z_PROBE_OFFSET_RANGE_MIN -5//-20 //reduced by TH 05/17/2021
-#define Z_PROBE_OFFSET_RANGE_MAX 5//20 //reduced by TH 05/17/2021
+#define Z_PROBE_OFFSET_RANGE_MIN -3//-20 //reduced by TH 05/17/2021
+#define Z_PROBE_OFFSET_RANGE_MAX 0//20 //reduced by TH 05/17/2021
 
 // Enable the M48 repeatability test to test probe accuracy
 //#define Z_MIN_PROBE_REPEATABILITY_TEST
@@ -1395,7 +1395,7 @@
  *  - Use a low value (i.e., Z_MIN_POS) if the nozzle falls down to the bed.
  *  - Use a large value (i.e., Z_MAX_POS) if the bed falls down, away from the nozzle.
  */
-//#define Z_IDLE_HEIGHT Z_HOME_POS
+#define Z_IDLE_HEIGHT Z_HOME_POS
 
 //#define Z_HOMING_HEIGHT  4      // (mm) Minimal Z height before homing (G28) for Z clearance above the bed, clamps, ...
                                   // Be sure to have this much clearance over your Z_MAX_POS to prevent grinding.
@@ -1598,8 +1598,8 @@
  */
 //#define PREHEAT_BEFORE_LEVELING // for now this is done in the start G-code (see README for code, code prorammed in slicer)
 #if ENABLED(PREHEAT_BEFORE_LEVELING)
-  #define LEVELING_NOZZLE_TEMP 120   // (°C) Only applies to E0 at this time
-  #define LEVELING_BED_TEMP     50
+  #define LEVELING_NOZZLE_TEMP 200   // (°C) Only applies to E0 at this time
+  #define LEVELING_BED_TEMP     70
 #endif
 
 /**
@@ -1636,7 +1636,7 @@
   #if ENABLED(G26_MESH_VALIDATION)
     #define MESH_TEST_NOZZLE_SIZE   0.4  // (mm) Diameter of primary nozzle.
     #define MESH_TEST_LAYER_HEIGHT  0.25  // (mm) Default layer height for G26.
-    #define MESH_TEST_HOTEND_TEMP   230    // (°C) Default nozzle temperature for G26.
+    #define MESH_TEST_HOTEND_TEMP   235    // (°C) Default nozzle temperature for G26.
     #define MESH_TEST_BED_TEMP      70    // (°C) Default bed temperature for G26.
     #define G26_XY_FEEDRATE         20    // (mm/s) Feedrate for G26 XY moves.
     #define G26_XY_FEEDRATE_TRAVEL  40    // (mm/s) Feedrate for G26 XY travel moves.
@@ -1680,7 +1680,7 @@
 
   //#define MESH_EDIT_GFX_OVERLAY   // Display a graphics overlay while editing the mesh
 
-  #define MESH_INSET 1              // Set Mesh bounds as an inset region of the bed
+  #define MESH_INSET 15             // Set Mesh bounds as an inset region of the bed
   #define GRID_MAX_POINTS_X 10      // Don't use more than 15 points per axis, implementation limited.
   #define GRID_MAX_POINTS_Y GRID_MAX_POINTS_X
 
@@ -1789,8 +1789,8 @@
   #define Z_SAFE_HOMING_Y_POINT Y_CENTER  // Y point for Z homing
 #endif
 
-// Homing speeds (mm/min) // increase value if you haev issues with sensorless homing, "Stall detection is not reliable at low motor speeds. It would typically give false stall indications at low speeds."
-#define HOMING_FEEDRATE_MM_M { (50*60), (50*60), (4*60) } // 
+// Homing speeds (mm/min) // increase value if you have issues with sensorless homing, "Stall detection is not reliable at low motor speeds. It would typically give false stall indications at low speeds."
+#define HOMING_FEEDRATE_MM_M { (150*60), (150*60), (4*60) } // 
 
 // Validate that endstops are triggered on homing moves
 #define VALIDATE_HOMING_ENDSTOPS
@@ -1908,7 +1908,7 @@
 #define PREHEAT_1_FAN_SPEED     0 // Value from 0 to 255
 
 #define PREHEAT_2_LABEL       "PETG"
-#define PREHEAT_2_TEMP_HOTEND 230
+#define PREHEAT_2_TEMP_HOTEND 235
 #define PREHEAT_2_TEMP_BED     70
 #define PREHEAT_2_TEMP_CHAMBER 35
 #define PREHEAT_2_FAN_SPEED     0 // Value from 0 to 255
@@ -2003,7 +2003,7 @@
   //#define NOZZLE_CLEAN_NO_Y
 
   // Require a minimum hotend temperature for cleaning
-  #define NOZZLE_CLEAN_MIN_TEMP 170
+  #define NOZZLE_CLEAN_MIN_TEMP 220
   //#define NOZZLE_CLEAN_HEATUP       // Heat up the nozzle instead of skipping wipe
 
   // Explicit wipe G-code script applies to a G12 with no arguments.
@@ -3013,5 +3013,5 @@
 // Disable servo with M282 to reduce power consumption, noise, and heat when not in use
 //#define SERVO_DETACH_GCODE
 
-// Configuration.h was edited hy Tristan Hill for 'Big-Printer' on 05/25/2022
+// Configuration.h was edited hy Tristan Hill for 'Big-Printer' on 05/26/2022
 
