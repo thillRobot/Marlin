@@ -9,12 +9,26 @@ This is a custom configured version of the Marlin2 firmware for the Velleman KD8
 
 ## Installing/Updating Firmware on the Marlin M2-TWH Printer
 
-### Install Arduino IDE 
-The Arduino version must be >= 1.8.8 based on the instructions on the [Marlin Github](https://github.com/thillRobot/marlin_m2/tree/master/Marlin-2.0.m2)
+### Install Arduino CLI
 
-Version 1.8.10 in my `Dropbox/threedee_printing` directory as an executable
 
 The `U8glib` arduino library is needed. This can be installed through the arudino IDE by clicking `Sketch>Include Library>Manage Libraries`
+
+
+## Compiling Firware 
+```
+arduino-cli compile --fqbn "arduino:avr:mega:cpu=atmega2560" Marlin.ino --export-binaries
+```
+Now you can upload them directly, or copy the binaries to a separate machine that will upload to the arduino. This is useful if the compiling machine is not in the room with the printer. 
+
+```
+scp -r build <DESTUSR>@<DESTIPADDR>:Marlin/Marlin/build
+```
+Upload the compiled binaries to the arduino.
+```
+cd Marlin/Marlin
+arduino-cli upload -p /dev/ttyACM0 --fqbn "arduino:avr:mega:cpu=atmega2560" --input-dir build/arduino.avr.mega/ Marlin.ino
+```
 
 
 ## Replacing Nozzle on Marlin M2-TWH Printer
