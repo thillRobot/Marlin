@@ -849,11 +849,11 @@
 
 #define X_MIN_ENDSTOP_INVERTING true // false // Set to true to invert the logic of the endstop. //changed by TH 05/07/2021
 #define Y_MIN_ENDSTOP_INVERTING true // false // Set to true to invert the logic of the endstop. //changed by TH 05/07/2021
-#define Z_MIN_ENDSTOP_INVERTING false // false // Set to true to invert the logic of the endstop. //changed by TH 05/07/2021
+#define Z_MIN_ENDSTOP_INVERTING false // false // Set to true to invert the logic of the endstop. //changed by TH 05/27/2022
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING false // false // Set to true to invert the logic of the probe. //changed by TH 05/07/2021
+#define Z_MIN_PROBE_ENDSTOP_INVERTING false // false // Set to true to invert the logic of the probe. //changed by TH 05/27/2022
 
 
 #define I_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.

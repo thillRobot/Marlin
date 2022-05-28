@@ -3990,7 +3990,7 @@
 #endif
 
 /**
- * I2C position encode//rs for closed loop control.
+ * I2C position encoders for closed loop control.
  * Developed by Chris Barr at Aus3D.
  *
  * Wiki: https://wiki.aus3d.com.au/Magnetic_Encoder
