@@ -983,12 +983,12 @@
 //#define MICROSTEP1 LOW,LOW,LOW
 //#define MICROSTEP2 HIGH,LOW,LOW
 //#define MICROSTEP4 LOW,HIGH,LOW
-//#define MICROSTEP8 HIGH,HIGH,LOW
+#define MICROSTEP8 HIGH,HIGH,LOW
 //#define MICROSTEP16 LOW,LOW,HIGH
 //#define MICROSTEP32 HIGH,LOW,HIGH
 
 // Microstep settings (Requires a board with pins named X_MS1, X_MS2, etc.)
-#define MICROSTEP_MODES { 16, 16, 16, 16, 4, 4 } // [1,2,4,8,16] // TH changed extruder1 to 2 (1/2 stepping) for E3D 0.9deg/step 'slimline' motor -> this should increase torque
+#define MICROSTEP_MODES {16,16,16,16,16,16} // [1,2,4,8,16] // TH changed extruder1 to 2 (1/2 stepping) for E3D 0.9deg/step 'slimline' motor -> this should increase torque
 
 /**
  *  @section  stepper motor current
@@ -1011,7 +1011,7 @@
  *    M909, M910 & LCD - only PRINTRBOARD_REVF & RIGIDBOARD_V2
  */
 //#define PWM_MOTOR_CURRENT { 1300, 1300, 1250 }          // Values in milliamps
-#define DIGIPOT_MOTOR_CURRENT { 135,135,135,235,135 }   // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
+#define DIGIPOT_MOTOR_CURRENT { 135,135,135,135,135 }   // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
 //#define DAC_MOTOR_CURRENT_DEFAULT { 70, 80, 90, 80 }    // Default drive percent - X, Y, Z, E axis
 
 /**
