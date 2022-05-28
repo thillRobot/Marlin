@@ -23,6 +23,9 @@
 # NEVER put it in the repository
 _Version.h
 
+
+Marlin/build/
+
 #
 # OS
 #
