@@ -69,7 +69,7 @@
 // @section info
 
 // Author info of this build printed to the host during boot and M115
-#define STRING_CONFIG_H_AUTHOR "(thillRobot, M2-Titan, v2.0.7.2)" // Who made the changes.
+#define STRING_CONFIG_H_AUTHOR "(thillRobot, M2-Titan)" // Who made the changes.
 //#define CUSTOM_VERSION_FILE Version.h // Path from the root directory (no quotes)
 
 /**
@@ -103,7 +103,7 @@
  * :[-1, 0, 1, 2, 3, 4, 5, 6, 7]
  */
 #define SERIAL_PORT 0
-
+#define BAUDRATE 250000
 // #define SERIAL_PORT_2 -1
 
 /**
@@ -849,11 +849,11 @@
 
 #define X_MIN_ENDSTOP_INVERTING true // false // Set to true to invert the logic of the endstop. //changed by TH 05/07/2021
 #define Y_MIN_ENDSTOP_INVERTING true // false // Set to true to invert the logic of the endstop. //changed by TH 05/07/2021
-#define Z_MIN_ENDSTOP_INVERTING true // false // Set to true to invert the logic of the endstop. //changed by TH 05/07/2021
+#define Z_MIN_ENDSTOP_INVERTING false // false // Set to true to invert the logic of the endstop. //changed by TH 05/07/2021
 #define X_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Y_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
 #define Z_MAX_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
-#define Z_MIN_PROBE_ENDSTOP_INVERTING true // false // Set to true to invert the logic of the probe. //changed by TH 05/07/2021
+#define Z_MIN_PROBE_ENDSTOP_INVERTING false // false // Set to true to invert the logic of the probe. //changed by TH 05/07/2021
 
 
 #define I_MIN_ENDSTOP_INVERTING false // Set to true to invert the logic of the endstop.
@@ -949,7 +949,7 @@
  *                                      X, Y, Z [, I [, J [, K]]], E0 [, E1[, E2...]]
  */
 
-#define DEFAULT_AXIS_STEPS_PER_UNIT {88.88,88.88,400,410}// 819.8  { 80, 80, 4000, 500 } changed by TH 04/09/2022, copied from previous versions
+#define DEFAULT_AXIS_STEPS_PER_UNIT {88.88,88.88,400,820}// 819.8  { 80, 80, 4000, 500 } changed by TH 04/09/2022, copied from previous versions
 
 /**
  * Default Max Feed Rate (mm/s)
@@ -3025,4 +3025,4 @@
 // Disable servo with M282 to reduce power consumption, noise, and heat when not in use
 //#define SERVO_DETACH_GCODE
 
-// This file  was modified by Tristan Hill on 05/26/2022 for the modified MakerGear M2-Titan
+// This file  was modified by Tristan Hill on 05/27/2022 for the modified MakerGear M2-Titan

@@ -497,7 +497,7 @@
  * The fan turns on automatically whenever any driver is enabled and turns
  * off (or reduces to idle speed) shortly after drivers are turned off.
  */
-#define USE_CONTROLLER_FAN // enabled by TH 05/07/2021
+//#define USE_CONTROLLER_FAN // enabled by TH 05/07/2021
 #if ENABLED(USE_CONTROLLER_FAN)
 
   //#define CONTROLLER_FAN_PIN -1           // Set a custom pin for the controller fan
@@ -1186,7 +1186,7 @@
 //#define MICROSTEP32 HIGH,LOW,HIGH
 
 // Microstep settings (Requires a board with pins named X_MS1, X_MS2, etc.)
-#define MICROSTEP_MODES { 16, 16, 16, 4, 4, 4 } // [1,2,4,8,16] // TH changed extruder1 to 2 (1/2 stepping) for E3D 0.9deg/step 'slimline' motor -> this should increase torque
+#define MICROSTEP_MODES { 16, 16, 16, 16, 16, 16 } // [1,2,4,8,16] // TH changed extruder1 to 2 (1/2 stepping) for E3D 0.9deg/step 'slimline' motor -> this should increase torque
 
 /**
  *  @section  stepper motor current
@@ -3968,12 +3968,12 @@
  * Host Prompt Support enables Marlin to use the host for user prompts so
  * filament runout and other processes can be managed from the host side.
  */
-//#define HOST_ACTION_COMMANDS
+#define HOST_ACTION_COMMANDS
 #if ENABLED(HOST_ACTION_COMMANDS)
-  //#define HOST_PAUSE_M76                // Tell the host to pause in response to M76
-  //#define HOST_PROMPT_SUPPORT           // Initiate host prompts to get user feedback
+  #define HOST_PAUSE_M76                // Tell the host to pause in response to M76
+  #define HOST_PROMPT_SUPPORT           // Initiate host prompts to get user feedback
   #if ENABLED(HOST_PROMPT_SUPPORT)
-    //#define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
+    #define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
   #endif
   //#define HOST_START_MENU_ITEM          // Add a menu item that tells the host to start
   //#define HOST_SHUTDOWN_MENU_ITEM       // Add a menu item that tells the host to shut down
@@ -4355,5 +4355,5 @@
 //#define OPTIBOOT_RESET_REASON
 
 
-// This file  was modified by Tristan Hill on 05/26/2022 for the modified MakerGear M2-Titan
+// This file  was modified by Tristan Hill on 05/27/2022 for the modified MakerGear M2-Titan
 
