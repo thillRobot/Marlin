@@ -136,3 +136,12 @@ new_steps_mm_z=target_meas_z2*prev_steps_mm_z/actual_meas_z2 % 395.79.48 (I pred
 % also, i think that the z-axis calibration here means very little, the
 % measurement were not reliable because of the geometry and top surface
 % condition - I am going to stick with the stock z value 400
+
+% Send: M92 X64.5 Y64.0 Z400.00 E828
+% Recv: ok
+
+% remember to store these settings in EEPROM (if you choose)
+% Send: M500
+% Recv: echo:Settings Stored (613 bytes; crc 58911)
+% Recv: Mesh saved in slot 1
+% Recv: ok
