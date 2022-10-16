@@ -1209,7 +1209,7 @@
  *    M909, M910 & LCD - only PRINTRBOARD_REVF & RIGIDBOARD_V2
  */
 //#define PWM_MOTOR_CURRENT { 1300, 1300, 1250 }          // Values in milliamps
-#define DIGIPOT_MOTOR_CURRENT { 135,135,135,235,135 }   // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
+#define DIGIPOT_MOTOR_CURRENT { 135,135,135,135,135 }   // Values 0-255 (RAMBO 135 = ~0.75A, 185 = ~1A)
 //#define DAC_MOTOR_CURRENT_DEFAULT { 70, 80, 90, 80 }    // Default drive percent - X, Y, Z, E axis
 
 /**
@@ -3973,7 +3973,11 @@
   //#define HOST_PAUSE_M76                // Tell the host to pause in response to M76
   //#define HOST_PROMPT_SUPPORT           // Initiate host prompts to get user feedback
   #if ENABLED(HOST_PROMPT_SUPPORT)
+<<<<<<< HEAD
    //#define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
+=======
+    //#define HOST_STATUS_NOTIFICATIONS   // Send some status messages to the host as notifications
+>>>>>>> f417de1e389774068b00b033e4fef74c6ee14921
   #endif
   //#define HOST_START_MENU_ITEM          // Add a menu item that tells the host to start
   //#define HOST_SHUTDOWN_MENU_ITEM       // Add a menu item that tells the host to shut down
@@ -3982,7 +3986,7 @@
 /**
  * Cancel Objects
  *
- * Implement M486 to allow Marlin to skip objects
+ * Implement M4//86 to allow Marlin to skip objects
  */
 //#define CANCEL_OBJECTS
 #if ENABLED(CANCEL_OBJECTS)
